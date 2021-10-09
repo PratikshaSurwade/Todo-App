@@ -3,12 +3,9 @@ let todoLists = [];
 let currentChange;
 let flag = true;
 
-
-
-var TodoCards=document.querySelector(".todo-cards");
-var Page= document.getElementById('page');
-
 console.log(todoLists);
+ var Page=document.querySelector("#page");
+
 
 function initialisation() {
   if (flag) {
@@ -31,12 +28,14 @@ function initialisation() {
     document.getElementById("noTodo").style.display = "none";
   }
 }
+
 initialisation();
 
 function addbutton(){
     console.log("add is hitted");
     document.querySelector("#Popup").style.visibility="visible";
     document.querySelector("#page").style.filter='blur(0.4em)';
+    
 }
 
 
@@ -58,7 +57,6 @@ function addlists(){
       flag=true;
       renderlists();
       console.log(todoLists.length);
-
     }
 }
 
@@ -82,15 +80,15 @@ function renderlists(todo){
         <div class="trip-card-1" onclick="redirect(this)">
             ${todoLists[i].heading}
         </div>
-        <hr>
+        <hr class="hr-margin">
         <br>
-        <ul class="MyList" id="myList">
+        <ul class="MyList" id="myList" style="list-style-type:none;">
         </ul>
         <button class="card-trash" id="remove-list-icon" onclick="removecard(this)"><i class="far fa-trash-alt" aria-hidden="true"></i></button><span><button class=" icon-pluscircle card-icon" id="add-new-list" onclick="addNewItem(this)"><i class="fas fa-plus-circle"></i></button></span>
             
         
         `;
-        console.log(node.childNodes);
+        //console.log(node.childNodes);
         list.append(node);
 
         let currentTodo = todoLists[i];
@@ -109,19 +107,16 @@ function renderlists(todo){
          liNode.innerHTML = ` ${currentTodo.subTask[j].name} ${rest}`;
          node.childNodes[7].append(liNode);
       }
-
     }
-
 }
+
 console.log(todoLists);
 console.log(todoLists.length);
    
 
 function removecard(element) {
   let Todocard=element.parentElement;
-    console.log(Todocard);
-
-
+  console.log(Todocard);
   for (let i = 0; i < todoLists.length; i++) {
     if (todoLists[i].id == Todocard.getAttribute("data-key")) {
       todoLists.splice(i, 1);
@@ -136,14 +131,13 @@ function addNewItem(element){
   
 document.querySelector("#Popup2").style.visibility="visible";   
 document.querySelector("#page").style.filter='blur(0.4em)';
+document.querySelector("#page2").style.filter='blur(0.4em)';
 
 currentkey=element;
-
 }
 
 
 function addItem(){
-
     console.log(currentkey);
     
     let cardskey=currentkey.parentElement.parentElement;
@@ -152,16 +146,27 @@ function addItem(){
     console.log(id);
     let cardsKeY=currentkey.parentElement.parentElement.childNodes[7].nodeName;
     console.log(cardsKeY);
-    
-    let listNode=currentkey.parentElement.parentElement.childNodes[7];
+
+    let list;
+    if (flag) {
+      list = currentkey.parentElement.parentElement.childNodes[7];
+    } else {
+      list = currentkey.parentElement.parentElement.childNodes[5];
+      listName=currentkey.parentElement.parentElement.childNodes[5].nodename;
+      console.log(list);
+      console.log(listName);
+    }
 
     let txtVal =document.getElementById("itempopupinput").value;
        
     
     const liNode = document.createElement("LI");
-    liNode.setAttribute("class", 'card-item');
+    liNode.setAttribute("class",flag ? `card-item` : `card-item-2`);
     liNode.setAttribute("data-key", Date.now());
     liNode.innerHTML = ` ${txtVal}<button class = 'markDone' onclick="markCompleted(this)">Mark Done</button>`;
+    let currentTodo;
+
+    //Find in the todo array
         for (let i = 0; i < todoLists.length; i++) {
             if (todoLists[i].id == id) {
               todoLists[i].subTask.push({
@@ -172,8 +177,8 @@ function addItem(){
               console.log(todoLists[i]);
             }
           }
-        listNode.appendChild(liNode);
-        console.log(listNode);   
+    list.append(liNode);
+    console.log(list);   
     toggle();
 }
 
@@ -206,6 +211,7 @@ function toggle(){
     document.getElementById('Popup').style.visibility="hidden";
     document.getElementById("itempopupinput").value='';
     document.getElementById('Popup2').style.visibility="hidden";
+    document.querySelector("#page2").style.filter='';
     Page.style.filter='';
 
 }
@@ -226,15 +232,15 @@ function redirect(element) {
  
 
   document.getElementById("currentHeading").textContent = currentTodo.heading;
+  document.getElementById("currentHeading-11").textContent = currentTodo.heading;
   document.getElementById("currentHeading-1").textContent = currentTodo.heading;
   
-  // document.querySelectorAll("currentHeading-1");
-  // document.parentNode.setAttribute("data-key", currentTodo.id);
   document
     .getElementById("currentHeading-1")
     .parentNode.setAttribute("data-key", currentTodo.id);
 
   console.log(currentTodo);
+
   let e = document.getElementById("singleList");
   var child = e.lastElementChild;
   while (child) {
@@ -252,6 +258,9 @@ function redirect(element) {
     node.setAttribute("class", classToPut);
     node.setAttribute("data-key", currentTodo.subTask[i].id);
     node.innerHTML = ` ${currentTodo.subTask[i].name} ${rest}`;
+    console.log(node.childNodes);
+    let e = document.getElementById("singleList");
+
     e.append(node);
   }
 }
