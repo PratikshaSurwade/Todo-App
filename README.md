@@ -1,7 +1,7 @@
 # Todo-App
 Uses HTML CSS JS 
 
-A todo Application
+A Todo-Application - App to keep Todo's.
 
 U can add ur own todo card by clicking on + sign ,a popup will display where you can give title of your choise (as per your work) your card will display.
 By clicking on + sign on card you can note down sub-works one by one.
