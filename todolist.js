@@ -159,7 +159,10 @@ function addItem(){
 
     let txtVal =document.getElementById("itempopupinput").value;
        
-    
+    if (txtVal ==""){
+      alert("Type something to add");
+    }
+    else{
     const liNode = document.createElement("LI");
     liNode.setAttribute("class",flag ? `card-item` : `card-item-2`);
     liNode.setAttribute("data-key", Date.now());
@@ -179,6 +182,7 @@ function addItem(){
           }
     list.append(liNode);
     console.log(list);   
+        }
     toggle();
 }
 
