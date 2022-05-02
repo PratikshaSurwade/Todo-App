@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TasksLists</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./index.css">
+        <script src="https://kit.fontawesome.com/8e34120824.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap">
+        <link rel="stylesheet" href="https://fontawesome.com/v5.15/icons/plus-circle?style=solid">
+    </head>
+    <body>
+            <div id="page" class="main-container">
+                <div class="head-line-container">
+                    <div><span class="task"><b>Tasks </b></span><span class="lists">Lists</span></div>
+                    <div class="addlists" onclick="addbutton()"><i type="button" class="fas fa-plus-circle icon-pluscircle" id="Addlistbtn"></i><span class="addlist-1">Add List</span></div>
+                </div>
+                <div class="cards-container" id="card"></div>
+                <div id="noTodo">No Items in the todo list</div>
+            </div>
+            <!--Card Expansion Container-->
+            <div id="page2">
+                <div class="main-container-1">
+                    <div class="heading-one"  onclick="goBack()"><i class="fas fa-arrow-alt-circle-left side-arrow-icon"></i><span class="heading-two" id="currentHeading">  Trip to Paris</span></div>
+                    <div class="heading-three"  id="currentHeading-11">Trip to Paris</div>
+                    <div class="heading-four" ><i class="fas fa-arrow-alt-circle-left side-arrow-icon" onclick="goBack()"></i><span class="back-botton">  Back</span></div>
+
+                    <center><div class="todo-card-1">
+                        <div id="currentHeading-1"  class="trip-card-1" >Trip to Paris</div>
+                        <hr class="hr-margin1">
+                        <ul id='singleList' style="list-style-type:none;">
+                        </ul>
+                        <button class="card-trash1" id="remove-list-icon" onclick="removecard(this)"><i class="far fa-trash-alt" aria-hidden="true"></i></button><span><button class=" icon-pluscircle1 card-icon1" id="add-new-list" onclick="addNewItem(this)"><i class="fas fa-plus-circle"></i></button></span>
+
+                    </div></center>
+                </div>
+            </div>
+            <!--Pop up Containers-->
+                <div id="Popup">
+                    <center><div class="addnewlist-container" id="newListpop">
+                        <div class="addnewlist-box">
+                            <div class="title-addlist">Add New List</div>
+                            <div class="name-container">
+                              <input type="text" class="name" id="listpopupinput" placeholder="Add new List"></input>
+                            </div>
+                            <div class="add-button-container">
+                            <button class="add-button-style" id="btn1"  onclick="addlists()" value="">ADD</button>
+                            <button class="add-button-style" id="btn2"  onclick="toggle()" value="">CLOSE</button>
+                        </div></center>
+                    </div>
+                </div>
+                <div id="Popup2">
+                    <center><div class="addnewlist-container" id="newItempop">
+                        <div class="addnewlist-box">
+                            <div class="title-addlist">Add New Todo</div>
+                            <div class="name-container">
+                              <input type="text" class="name" id="itempopupinput" placeholder="Add new Item" value=""></input>
+                            </div>
+                            <div class="add-button-container">
+                                <button class="add-button-style" id="btn3" onclick="addItem()" value="">ADD</button>
+                                <button class="add-button-style" id="btn4"  onclick="toggle()" value="">CLOSE</button>
+                            </div></center>
+                        </div>
+                    </div>
+                </div>   
+            
+            
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="./index.js"></script>
+        
+
+    </body>
+</html>
